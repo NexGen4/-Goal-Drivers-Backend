@@ -10,6 +10,10 @@ router.post('/add_bid_product' ,(req,res,next)=>{
     addBidProduct(req,res)
 })
 
+router.get('/details' ,(req,res,next)=>{
+    getProducts(req,res)
+})
+
 router.post('/add_selling_product' ,(req,res,next)=>{
     addSellingProduct(req,res)
 })

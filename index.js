@@ -7,6 +7,8 @@ import buyer_router from './routes/buyerRoute/Route.mjs'
 import seller_router from './routes/sellerRoute/Route.mjs'
 import user_router from './routes/userRoute/Route.mjs'
 import payment_router from './routes/pament/Route.mjs'
+import {connection_function} from './service/connection.mjs'
+import {createTables} from "./mysql/create_tables.mjs";
 
 var app = express();
 dotenv.config();
@@ -19,6 +21,10 @@ app.use('/api/seller',seller_router)
 app.use('/api/buyer',buyer_router)
 app.use('/api/user',user_router)
 app.use('/api/payment',payment_router)
+
+// Connect to the database and create tables
+var connection = connection_function();
+createTables(connection);  // Call the function to create tables
 
 app.listen(process.env.PORT,()=>{
     console.log('server started in port : ',process.env.PORT)
