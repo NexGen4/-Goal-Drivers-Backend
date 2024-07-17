@@ -4,6 +4,8 @@ import {sendMail} from '../send_mails/index.mjs'
 
 export async function operation(req , res){
     const connection = connection_function()
+
+    console.log(req.params)
     try{
         connection.query("SELECT * FROM sale WHERE product_id="+req.params.product_id, function (err, result, fields) {
             if (err) res.send(err);
@@ -11,6 +13,7 @@ export async function operation(req , res){
                 connection.query("SELECT * FROM product WHERE product_id="+req.params.product_id,async function (err, result2, fields) {
                     if (err) res.send(err);
                     else{
+
                         let data = {
                             id : req.params.product_id,
                             name: result[0].name,
@@ -24,8 +27,8 @@ export async function operation(req , res){
                         }
                         data.income = data.sold * data.price
                         await pdfCreate(data)
-                        await sendMail(req.params.email , "Good" ,"Take This")
-                        res.send(result)
+                        await sendMail(req.params.email , "Product Report" ,"Latest product report")
+                        res.send('Email Sent')
                     }
                   });
             }

@@ -1,5 +1,5 @@
 import  express  from 'express'
-import {confirmProduct , searchReview , hideReviews, searchUsers , getUsers , rejectProduct , getPendingProducts , getReviews , addHelp} from '../../operations/adminOperations/index.mjs'
+import {getUser,confirmProduct , searchReview , hideReviews, searchUsers , getUsers , rejectProduct , getPendingProducts , getReviews , addHelp} from '../../operations/adminOperations/index.mjs'
 
 const router = express.Router()
 
@@ -29,6 +29,10 @@ router.get('/get_reviews' ,(req,res,next)=>{
 
 router.get('/get_users' ,(req,res,next)=>{
     getUsers(req,res)
+})
+
+router.get('/get_user/:user_id' ,(req,res,next)=>{
+    getUser(req,res)
 })
 
 router.get('/search_users/:key' ,(req,res,next)=>{

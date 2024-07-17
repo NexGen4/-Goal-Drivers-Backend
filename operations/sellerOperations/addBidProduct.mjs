@@ -27,7 +27,11 @@ export async function operation(req , res){
     try{
         console.log(req.body)
 
-        var sql = "INSERT INTO product (admin_status, type, name, description, seller_id, amount, price, image) " + "VALUES ('pending','bid','"+req.body.name+"','"+req.body.description+"',"+req.body.seller_id+","+req.body.amount+","+req.body.base_price+","+req.body.image+")"
+        var sql = "INSERT INTO product (admin_status, type, name, description, seller_id, amount, price, image, date) " +
+            "VALUES ('pending', 'bid', '" + req.body.name + "', '" + req.body.description + "', " +
+            req.body.seller_id + ", " + req.body.amount + ", " + req.body.base_price + ", '" + req.body.image + "', " +
+            "NOW())";
+
         connection.query(sql, function (err, result, fields) {
             if (err) res.send(err);
             else{
@@ -36,7 +40,10 @@ export async function operation(req , res){
                 const current_time = formatEndTime(new Date(), req.body.duration); // Assuming duration is in hours
                 console.log(current_time)
 
-                var sql = "INSERT INTO bid_product (product_id , status, base_price ,end_time, image) " + "VALUES ("+result.insertId+",'ongoing',"+req.body.base_price+",'"+current_time+"',"+req.body.image+")"
+                var sql = "INSERT INTO bid_product (product_id, name, status, base_price, seller_id, end_time, image, date) " +
+                    "VALUES (" + result.insertId + ", '" + req.body.name + "', 'ongoing', " + req.body.base_price + ", " +
+                    req.body.seller_id + ", '" + current_time + "', '" + req.body.image + "', NOW())";
+
                 connection.query(sql, function (err, result2, fields) {
                     if (err) res.send(err);
                     else{
