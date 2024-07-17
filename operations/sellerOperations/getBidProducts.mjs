@@ -3,7 +3,7 @@ import {connection_function} from '../../service/connection.mjs'
 export async function operation(req , res){
     const connection = connection_function()
     try{
-        connection.query("SELECT * FROM product WHERE seller_id="+req.params.seller_id+" AND type = 'bid'", function (err, result, fields) {
+        connection.query("SELECT * FROM bid_product WHERE seller_id='"+req.params.seller_id+"'", function (err, result, fields) {
             if (err) res.send(err);
             else{
                 connection.query("SELECT * FROM bid_product", function (err, result2, fields) {
