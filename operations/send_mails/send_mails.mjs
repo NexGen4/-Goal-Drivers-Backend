@@ -25,8 +25,10 @@ export async function sendMails(to , subject , body){
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
+          return error
         } else {
           console.log('Email sent: ' + info.response);
+          return info.response;
         }
       });
 }

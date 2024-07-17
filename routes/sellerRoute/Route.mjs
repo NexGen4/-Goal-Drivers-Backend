@@ -1,5 +1,5 @@
 import  express  from 'express'
-import {addBidProduct,getReport , getBidProducts , getBids , addSellingProduct , deleteProduct , getProducts , updateProduct , getRequests , stateRequest,sendReport} from '../../operations/sellerOperations/index.mjs'
+import {addBidProduct,getReport , getBidProducts , getBids , addSellingProduct , deleteProduct , getProducts , updateProduct , getRequests , stateRequest} from '../../operations/sellerOperations/index.mjs'
 const router = express.Router()
 
 router.get('/' ,(req,res,next)=>{
@@ -8,10 +8,6 @@ router.get('/' ,(req,res,next)=>{
 
 router.post('/add_bid_product' ,(req,res,next)=>{
     addBidProduct(req,res)
-})
-
-router.get('/send_report' ,(req,res,next)=>{
-    sendReport(req,res)
 })
 
 router.get('/details' ,(req,res,next)=>{
