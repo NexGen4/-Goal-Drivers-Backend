@@ -19,6 +19,8 @@ export async function operation(req , res){
                 return res.status(500).send(err.message); // Send exact error message
             }
 
+            // res.send("success");
+
             var sql2 = "INSERT INTO rating (product_id, rating, amount) " + "VALUES ("+result.insertId+" , 0 , 0)"
             connection.query(sql2, function (err, result2, fields) {
                 if (err) {

@@ -22,7 +22,7 @@ export function createTables(connection) {
       end_time TIME,
       winner_id INT,
       image VARCHAR(255),
-      date DATA
+      date DATA 
     )`,
     `CREATE TABLE IF NOT EXISTS buyer_bid (
       id INT AUTO_INCREMENT PRIMARY KEY,
