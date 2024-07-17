@@ -5,7 +5,11 @@ export async function operation(req , res){
     try{
         console.log(req.body)
 
-        var sql = "INSERT INTO product (admin_status, type, name, description, seller_id, amount, price, image)" + "VALUES ('pending','selling','"+req.body.name+"','"+req.body.description+"',"+req.body.seller_id+","+req.body.amount+","+req.body.price+","+req.body.image+")"
+        var sql = "INSERT INTO product (admin_status, type, name, description, seller_id, amount, price, image, date) " +
+            "VALUES ('pending', 'selling', '" + req.body.name + "', '" + req.body.description + "', " +
+            req.body.seller_id + ", " + req.body.amount + ", " + req.body.price + ", '" + req.body.image + "', " +
+            "NOW())";
+
         connection.query(sql, function (err, result, fields) {
             console.log(result);
 
