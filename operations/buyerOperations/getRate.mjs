@@ -3,9 +3,9 @@ import {connection_function} from '../../service/connection.mjs'
 export async function operation(req , res){
     const connection = connection_function()
     try{
-        connection.query("SELECT rating FROM rating WHERE product_id = "+req.params.product_id, function (err, result, fields) {
+        connection.query("SELECT * FROM rating WHERE product_id = "+req.params.product_id, function (err, result, fields) {
             if (err) res.send(err);
-            res.send(result)
+            res.send(result[0])
 
         });
 

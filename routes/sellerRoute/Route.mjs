@@ -1,5 +1,5 @@
 import  express  from 'express'
-import {addBidProduct,getReport , getBidProducts , getBids , addSellingProduct , deleteProduct , getProducts , updateProduct , getRequests , stateRequest} from '../../operations/sellerOperations/index.mjs'
+import {addBidProduct,getReport , getBidProducts , getBids , addSellingProduct , deleteProduct , getProducts , updateProduct , getRequests , stateRequest,getProductByType} from '../../operations/sellerOperations/index.mjs'
 const router = express.Router()
 
 router.get('/' ,(req,res,next)=>{
@@ -48,6 +48,10 @@ router.get('/get_report/:product_id/:email' ,(req,res,next)=>{
  
 router.put('/state_request/:request_id' ,(req,res,next)=>{
     stateRequest(req,res)
+})
+
+router.get('/get_products/:type/:seller_id' ,(req,res,next)=>{
+    getProductByType(req,res)
 })
 
 export default router
