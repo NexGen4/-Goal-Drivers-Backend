@@ -18,19 +18,24 @@ async function addToCart(product_ids , res , i , buyer_id , connection){
     }
 }
 
-export async function operation(product_id , buyer_id){
+export async function operation(req, res, product_id , buyer_id, quantity){
+    console.log("Adding product to cart")
     try{
         const connection = connection_function()
-        var sql = "INSERT INTO cart (buyer_id , product_id) " + "VALUES ("+buyer_id+","+product_id+")"
+        var sql = "INSERT INTO cart (buyer_id , product_id, quantity) " + "VALUES ("+buyer_id+","+product_id+", ,"+quantity+")"
         connection.query(sql, function (err, result, fields) {
-        if (err) {res.send(err)}
-        else{
-        }
+            console.log(result)
+            /*if (err) {
+                // res.send(err)
+                return res.send(err.message);
+            } else{
+                return res.send("Product added to cart!");
+                // res.send("success")
+            }*/
         });
+    } catch{
+        console.log("catch")
+        res.send("internal sql error")
+        return
     }
-    catch{
-    console.log("catch")
-    res.send("internal sql error")
-    return
-}
 }
