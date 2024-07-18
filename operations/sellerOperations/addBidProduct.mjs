@@ -47,7 +47,16 @@ export async function operation(req , res){
                 connection.query(sql, function (err, result2, fields) {
                     if (err) res.send(err);
                     else{
-                        res.send("success")
+
+                        var sql2 = "INSERT INTO rating (product_id, rating, amount) " + "VALUES ("+result.insertId+" , 0 , 0)"
+                        connection.query(sql2, function (err, result2, fields) {
+                            if (err) {
+                                console.error(err);
+                                return res.status(500).send(err.message); // Send exact error message
+                            } else {
+                                res.send("success");
+                            }
+                        });
                     }
                 });
             }

@@ -1,5 +1,5 @@
 import  express  from 'express'
-import {addBid,getSeller,getSellers,requestContact , addProductsToCart , getCart , getProducts ,purchaseProduct , removeCart , requestMeeting,requestDemo,confirmWinner, getSellingProducts, getProductById, searchCart, rate, addFeedback,getRate} from '../../operations/buyerOperations/index.mjs'
+import {addBid,getBidProducts,getSeller,getSellers,requestContact , addProductsToCart , getCart , getProducts ,purchaseProduct , removeCart , requestMeeting,requestDemo,confirmWinner, getSellingProducts, getProductById, searchCart, rate, addFeedback,getRate} from '../../operations/buyerOperations/index.mjs'
 
 const router = express.Router()
 
@@ -24,6 +24,10 @@ router.get('/get_products' ,(req,res,next)=>{
 
 router.get('/get_selling_products' ,(req,res,next)=>{
     getSellingProducts(req,res)
+})
+
+router.get('/get_bid_products' ,(req,res,next)=>{
+    getBidProducts(req,res)
 })
 
 router.get('/get_cart/:buyer_id' ,(req,res,next)=>{
