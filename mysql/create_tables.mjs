@@ -12,16 +12,18 @@ export function createTables(connection) {
       seller_id INT,
       amount INT,
       price DOUBLE,
-      image VARCHAR(255),
+      image LONGTEXT,
       date DATE
     )`,
     `CREATE TABLE IF NOT EXISTS bid_product (
-      product_id INT PRIMARY KEY,
+      product_id INT AUTO_INCREMENT  PRIMARY KEY,
+      name VARCHAR(255),
       status VARCHAR(255),
       base_price INT,
       end_time TIME,
       winner_id INT,
-      image VARCHAR(255),
+      seller_id INT,
+      image LONGTEXT,
       date DATE
     )`,
     `CREATE TABLE IF NOT EXISTS buyer_bid (
@@ -116,10 +118,10 @@ export function createTables(connection) {
     )`
   ];
 
-  // queries.forEach((query) => {
-  //   connection.query(query, function (err, result) {
-  //     if (err) throw err;
-  //     console.log(`Table created or already exists : ${query.split(' ')[2]}`);
-  //   });
-  // });
+  queries.forEach((query) => {
+    connection.query(query, function (err, result) {
+      if (err) throw err;
+      console.log(`Table created or already exists : ${query.split(' ')[2]}`);
+    });
+  });
 }
