@@ -1,5 +1,5 @@
 import  express  from 'express'
-import {addBidProduct,getReport ,getBidProduct, getBidProducts , getBids , addSellingProduct , deleteProduct , getProducts , updateProduct , getRequests , stateRequest,getProductByType} from '../../operations/sellerOperations/index.mjs'
+import {addBidProduct,getReport,sendNotificationToSeller ,getBidProduct, getBidProducts , getBids ,getBid, addSellingProduct , deleteProduct , getProducts , updateProduct , getRequests , stateRequest,getProductByType} from '../../operations/sellerOperations/index.mjs'
 const router = express.Router()
 
 router.get('/' ,(req,res,next)=>{
@@ -34,6 +34,10 @@ router.get('/get_bids/:product_id' ,(req,res,next)=>{
     getBids(req,res)
 })
 
+router.get('/get_bid/:buyer_id' ,(req,res,next)=>{
+    getBid(req,res)
+})
+
 router.put('/update_product/:product_id' ,(req,res,next)=>{
     updateProduct(req,res)
 })
@@ -56,6 +60,10 @@ router.put('/state_request/:request_id' ,(req,res,next)=>{
 
 router.get('/get_products/:type/:seller_id' ,(req,res,next)=>{
     getProductByType(req,res)
+})
+
+router.get('/notify/:product_id/:text' ,(req,res,next)=>{
+    sendNotificationToSeller(req,res)
 })
 
 export default router
