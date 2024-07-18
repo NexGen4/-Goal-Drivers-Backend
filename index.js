@@ -8,13 +8,20 @@ import seller_router from './routes/sellerRoute/Route.mjs'
 import user_router from './routes/userRoute/Route.mjs'
 import payment_router from './routes/pament/Route.mjs'
 import { connection_function } from './service/connection.mjs';
-import createTables from './mysql/create_tables.js';  // Correct import for default export
+import createTables from './mysql/create_tables.js';
+import path from "path";
+import {fileURLToPath} from "url";  // Correct import for default export
 
 var app = express();
 dotenv.config();
 
 app.use(cors())
 app.use(bodyParser.json())
+
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename);
+
+app.use('/upload', express.static(path.join(__dirname, 'upload')));
 
 app.use('/api/admin',admin_router)
 app.use('/api/seller',seller_router)
