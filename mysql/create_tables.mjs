@@ -13,7 +13,7 @@ export function createTables(connection) {
       amount INT,
       price DOUBLE,
       image VARCHAR(255),
-      date DATE 
+      date DATE
     )`,
     `CREATE TABLE IF NOT EXISTS bid_product (
       product_id INT PRIMARY KEY,
@@ -22,7 +22,7 @@ export function createTables(connection) {
       end_time TIME,
       winner_id INT,
       image VARCHAR(255),
-      date DATE 
+      date DATE
     )`,
     `CREATE TABLE IF NOT EXISTS buyer_bid (
       id INT AUTO_INCREMENT PRIMARY KEY,

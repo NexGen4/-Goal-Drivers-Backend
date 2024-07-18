@@ -1,12 +1,30 @@
 import  express  from 'express'
+import  multer  from 'multer'
+import  bodyParser  from 'body-parser'
+import  path  from 'path'
+import { fileURLToPath } from 'url';
 import {addBidProduct,getReport,sendNotificationToSeller ,getBidProduct, getBidProducts , getBids ,getBid, addSellingProduct , deleteProduct , getProducts , updateProduct , getRequests , stateRequest,getProductByType} from '../../operations/sellerOperations/index.mjs'
 const router = express.Router()
+var app = express();
+
+router.use(bodyParser.json());
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'upload/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
 
 router.get('/' ,(req,res,next)=>{
     res.send('seller home')
 })
 
-router.post('/add_bid_product' ,(req,res,next)=>{
+router.post('/add_bid_product' , upload.array('images'), (req,res,next)=>{
     addBidProduct(req,res)
 })
 

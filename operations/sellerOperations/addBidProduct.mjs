@@ -26,10 +26,21 @@ export async function operation(req , res){
 
     try{
         console.log(req.body)
+        console.log("======================req.file")
+        console.log(req.files)
+        let host = "http://localhost:3002/"
+
+        // let imageStr = "";
+        // req.files.forEach((file)=>{
+        //     console.log(host + file.path + ",");
+        //     imageStr.concat(host + file.path + ",")
+        // })
+        // console.log(imageStr)
+        let imgURL = host + req.files[0].path;
 
         var sql = "INSERT INTO product (admin_status, type, name, description, seller_id, amount, price, image, date) " +
             "VALUES ('pending', 'bid', '" + req.body.name + "', '" + req.body.description + "', " +
-            req.body.seller_id + ", " + req.body.amount + ", " + req.body.base_price + ", '" + req.body.image + "', " +
+            req.body.seller_id + ", " + req.body.amount + ", " + req.body.base_price + ", '" + imgURL + "', " +
             "NOW())";
 
         connection.query(sql, function (err, result, fields) {
@@ -42,7 +53,7 @@ export async function operation(req , res){
 
                 var sql = "INSERT INTO bid_product (product_id, name, status, base_price, seller_id, end_time, image, date) " +
                     "VALUES (" + result.insertId + ", '" + req.body.name + "', 'ongoing', " + req.body.base_price + ", " +
-                    req.body.seller_id + ", '" + current_time + "', '" + req.body.image + "', NOW())";
+                    req.body.seller_id + ", '" + current_time + "', '" + imgURL + "', NOW())";
 
                 connection.query(sql, function (err, result2, fields) {
                     if (err) res.send(err);
