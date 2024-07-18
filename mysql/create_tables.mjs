@@ -50,7 +50,8 @@ export function createTables(connection) {
     `CREATE TABLE IF NOT EXISTS cart (
       cart_id INT AUTO_INCREMENT PRIMARY KEY,
       buyer_id INT,
-      product_id INT
+      product_id INT,
+      qty INT
     )`,
     `CREATE TABLE IF NOT EXISTS help (
       id INT AUTO_INCREMENT PRIMARY KEY,

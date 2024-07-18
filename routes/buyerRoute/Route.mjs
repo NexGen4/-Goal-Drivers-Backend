@@ -12,10 +12,7 @@ router.post('/add_bid' ,(req,res,next)=>{
 })
 
 router.post('/add_to_cart' ,(req,res,next)=>{
-    for(let i=0; i<req.body.product_ids.length; i++){
-        addProductsToCart(req, res, req.body.product_ids[i] , req.body.buyer_id, req.body.quantity)
-    }
-    res.send("Product added to cart!")
+    addProductsToCart(req, res, req.body.product_id , req.body.buyer_id, req.body.qty)
 })
 
 router.get('/get_products' ,(req,res,next)=>{

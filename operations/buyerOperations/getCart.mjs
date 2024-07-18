@@ -12,7 +12,8 @@ export async function operation(req , res){
           for(let i in result){
             let product = {
               product_id:result[i].product_id,
-              cart_id:result[i].cart_id
+              cart_id:result[i].cart_id,
+              qty:result[i].qty
             }
             product_ids.push(product)
            }
@@ -24,6 +25,7 @@ export async function operation(req , res){
             if(index!=-1){
               let resp = {
                 cart_id:product_ids[index].cart_id,
+                qty:product_ids[index].qty,
                 product:result2[i]
               }
               response.push(resp)
