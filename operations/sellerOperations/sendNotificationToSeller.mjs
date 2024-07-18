@@ -20,7 +20,7 @@ export async function operation(req , res){
                     res.send(err);
                 } else {
 
-                    sendMail_noAttach(result2[0].email, "Confirm Winner", req.params.text);
+                    sendMail_noAttach(result2[0].email, "About product", req.params.text);
                     res.send('Email sent');
                 }
             });
