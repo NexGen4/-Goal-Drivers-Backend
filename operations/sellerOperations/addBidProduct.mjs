@@ -8,7 +8,7 @@ export async function operation(req , res){
         }
         var today = new Date();
         var time = today.getHours()+req.body.duration + ":" + today.getMinutes() + ":" + today.getSeconds();
-        return `${time}`*/
+        return ${time}*/
 
         if (!(date instanceof Date)) {
             throw new Error('Invalid "date" argument. You must pass a date instance');
@@ -22,21 +22,14 @@ export async function operation(req , res){
         const seconds = String(endTime.getSeconds()).padStart(2, '0');
 
         return `${hours}:${minutes}:${seconds}`;
-      }
+    }
 
     try{
-        console.log(req.body)
-        console.log("======================req.file")
-        console.log(req.files)
+
         let host = "http://localhost:3002/"
 
-        // let imageStr = "";
-        // req.files.forEach((file)=>{
-        //     console.log(host + file.path + ",");
-        //     imageStr.concat(host + file.path + ",")
-        // })
-        // console.log(imageStr)
-        let imgURL = host + req.files[0].path;
+
+        let imgURL = host + req.files[0].destination+req.files[0].filename;
 
         var sql = "INSERT INTO product (admin_status, type, name, description, seller_id, amount, price, image, date) " +
             "VALUES ('pending', 'bid', '" + req.body.name + "', '" + req.body.description + "', " +
@@ -71,7 +64,7 @@ export async function operation(req , res){
                     }
                 });
             }
-        });    
+        });
     }
     catch(e){
         console.log("catch")

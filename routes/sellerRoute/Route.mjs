@@ -32,7 +32,7 @@ router.get('/details' ,(req,res,next)=>{
     getProducts(req,res)
 })
 
-router.post('/add_selling_product' ,(req,res,next)=>{
+router.post('/add_selling_product' , upload.array('images'),(req,res,next)=>{
     addSellingProduct(req,res)
 })
 

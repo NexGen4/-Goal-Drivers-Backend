@@ -4,7 +4,7 @@ import {sendMail_noAttach} from '../send_mails/index.mjs'
 export async function operation(req , res){
     const connection = connection_function()
 
-    const sql = "SELECT * FROM bid_product WHERE product_id = ?";
+    const sql = "SELECT * FROM product WHERE product_id = ?";
     const params = [req.params.product_id];
 
     connection.query(sql, params, function (err, result, fields) {

@@ -3,15 +3,17 @@ import {connection_function} from '../../service/connection.mjs'
 export async function operation(req , res){
     const connection = connection_function()
     try{
+        let host = "http://localhost:3002/"
+        let imgURL = host + req.files[0].destination+req.files[0].filename;
+
         console.log(req.body)
 
         var sql = "INSERT INTO product (admin_status, type, name, description, seller_id, amount, price, image, date) " +
             "VALUES ('pending', 'selling', '" + req.body.name + "', '" + req.body.description + "', " +
-            req.body.seller_id + ", " + req.body.amount + ", " + req.body.price + ", '" + req.body.image + "', " +
+            req.body.seller_id + ", " + req.body.amount + ", " + req.body.price + ", '" + imgURL + "', " +
             "NOW())";
 
         connection.query(sql, function (err, result, fields) {
-            console.log(result);
 
             // if (err) res.send(err);
             if (err) {
@@ -33,9 +35,9 @@ export async function operation(req , res){
         });
         
     }
-    catch{
+    catch (error){
         console.log("catch")
-        res.send("not valid")
+        res.send(error.message)
         return
     }
 }
