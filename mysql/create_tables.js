@@ -111,10 +111,10 @@ export default function createTables(connection) {
     )`
   ];
 
-  queries.forEach((query) => {
-    connection.query(query, function (err, result) {
-      if (err) throw err;
-      console.log(`Table created or already exists: ${query.split(' ')[2]}`);
-    });
-  });
+  // queries.forEach((query) => {
+  //   connection.query(query, function (err, result) {
+  //     if (err) throw err;
+  //     console.log(`Table created or already exists: ${query.split(' ')[2]}`);
+  //   });
+  // });
 }
