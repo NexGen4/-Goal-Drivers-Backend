@@ -1,5 +1,5 @@
 import  express  from 'express'
-import {addBid,getSeller,getSellers,requestContact , addProductsToCart , getCart , getProducts ,purchaseProduct , removeCart , requestMeeting,requestDemo, getSellingProducts, getProductById, searchCart, rate, addFeedback,getRate} from '../../operations/buyerOperations/index.mjs'
+import {addBid,getSeller,getSellers,requestContact , addProductsToCart , getCart , getProducts ,purchaseProduct , removeCart , requestMeeting,requestDemo,confirmWinner, getSellingProducts, getProductById, searchCart, rate, addFeedback,getRate} from '../../operations/buyerOperations/index.mjs'
 
 const router = express.Router()
 
@@ -75,6 +75,10 @@ router.post('/request_contact' ,(req,res,next)=>{
 
 router.post('/addFeedback' ,(req,res,next)=>{
     addFeedback(req,res)
+})
+
+router.put('/confirm-winner/:winner_id/:product_id/:email' ,(req,res,next)=>{
+    confirmWinner(req,res)
 })
 
 export default router

@@ -6,12 +6,12 @@ export async function sendMails(to , subject , body){
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: process.env.EMAIL,
+          user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASSWORD
         }
       });   
       var mailOptions = {
-        from: process.env.EMAIL,
+        from: process.env.EMAIL_USER,
         to: to,
         subject: subject,
         text: body,
